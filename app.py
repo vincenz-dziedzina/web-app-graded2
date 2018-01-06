@@ -6,6 +6,7 @@ from settings import app, db
 # . web-tech/bin/activate
 # export FLASK_APP=app.py
 # export FLASK_DEBUG=1
+# python parse_csv.py btw17_kerg.csv
 # flask run
 
 @app.route("/", methods=["GET"])
