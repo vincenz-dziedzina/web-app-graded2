@@ -76,6 +76,6 @@ def test():
     # print(brandenburg.state == None)
     # print(hennigsdorf.state.name == brandenburg.name)
 #
-# db.drop_all()
-# db.create_all()
+#db.drop_all()
+#db.create_all()
 # test()

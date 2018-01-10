@@ -1,0 +1,69 @@
+<!doctype html>
+<html ng-app="bundesApp">
+    <head>
+        <title>Bundetagswahl 2017</title>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
+        <script src="{{ url_for('static', filename='angular.js') }}"></script>
+        <script src="{{ url_for('static', filename='Chart.js') }}"></script>
+        <script src="{{ url_for('static', filename='angular-chart.js') }}"></script>
+        <script src="{{ url_for('static', filename='app.js') }}"></script>
+        <style>
+            span:hover {
+                color: #2196F3;
+                transition: 0.3s;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Bundestagswahl 2017</h1>
+        <div class="container-fluid" ng-controller="mainCtrl">
+            <div class="row">
+                <div class="col-md-2">
+                    <h2>Bundesland</h2>
+                    <ul>
+                        <li ng-repeat="state in states">
+                            {% raw %}
+                            <span ng-click="change_active_state(state)">{{ state.name }}</span>
+                            {% endraw %}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2" ng-if="active_state != null">
+                    <h2>Wahlkreis</h2>
+                    <ul>
+                        {% raw %}
+                        <input type="text" ng-model="input.filter" ng-change="list_regions()" ng-Trim="false" class="form-control"/>
+                        <li ng-repeat="region in regions">
+                            <span ng-click="change_active_region(region)">{{ region.name }}</span>
+                        </li>
+                        {% endraw %}
+                    </ul>
+                </div>
+                <div class="col-md-3" ng-if="result != null && active_region != null">
+                    <h2>Ergebnis</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Parteien</th>
+                                <th>Erststimmen</th>
+                                <th>Zweitstimmen</th>
+                            </tr>
+                        </thead>
+                        {% raw %}
+                            <tr ng-repeat="r in result">
+                                <td> {{ r[0] }}</td>
+                                <td> {{ r[1] }}</td>
+                                <td> {{ r[2] }}</td>
+                            </tr>
+                        {% endraw %}
+                    </table>
+                </div>
+                <div class="col-md-5" ng-if="result != null  && active_region != null">
+                    <h2>Diagramm</h2>
+                    <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="parties" chart-series="type">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

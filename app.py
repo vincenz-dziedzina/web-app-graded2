@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from models import Region, Category, VoteResult
 from settings import app, db
 
@@ -11,7 +11,7 @@ from settings import app, db
 
 @app.route("/", methods=["GET"])
 def login():
-    return "Hello World"
+    return render_template('index.html')
 
 # region actions
 
