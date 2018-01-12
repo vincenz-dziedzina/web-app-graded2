@@ -40,7 +40,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3" ng-if="result != null && active_region != null">
-                    <h2>Ergebnis</h2>
+                    <h2>Ergebnis - {% raw %} {{ active_region.name }} {% endraw %}</h2>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -59,7 +59,7 @@
                     </table>
                 </div>
                 <div class="col-md-5" ng-if="result != null  && active_region != null">
-                    <h2>Diagramm</h2>
+                    <h2>Diagramm - {% raw %} {{ active_region.name }} {% endraw %}</h2>
                     <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="parties" chart-series="type">
                     </canvas>
                 </div>
