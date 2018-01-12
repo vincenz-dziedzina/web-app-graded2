@@ -21,6 +21,8 @@ def getRegion(id):
         region = Region.query.get(id)
         if region:
             return jsonify(region.as_dict()), 200
+        else:
+            return "Not found", 404
 
 @app.route("/region/<int:id>/constituencies", methods=["GET"])
 def getConstituenciesOfRegion(id):
@@ -32,6 +34,8 @@ def getConstituenciesOfRegion(id):
                 output.append(constituency.as_dict())
 
             return jsonify(output), 200
+        else:
+            return "Not found", 404
 
 @app.route("/region/<int:id>/voteResults", methods=["GET"])
 def getVoteResultsOfRegion(id):
@@ -43,13 +47,18 @@ def getVoteResultsOfRegion(id):
                 output.append(voteResult.as_dict())
 
             return jsonify(output), 200
+        else:
+            return "Not found", 404
 
 @app.route("/region/<int:id>/state", methods=["GET"])
 def getStateOfRegion(id):
     if id:
         region = Region.query.get(id)
-        if region and region.state:
-            return jsonify(region.state.as_dict()), 200
+        if region:
+            if region.state:
+                return jsonify(region.state.as_dict()), 200
+        else:
+            return "Not found", 404
 
 @app.route("/states", methods=["GET"])
 def getStates():
@@ -68,6 +77,8 @@ def getCategory(id):
         category = Category.query.get(id)
         if category:
             return jsonify(category.as_dict()), 200
+        else:
+            return "Not found", 404
 
 @app.route("/category/<int:id>/voteResults", methods=["GET"])
 def getVoteResultsOfCategory(id):
@@ -79,6 +90,8 @@ def getVoteResultsOfCategory(id):
                 output.append(voteResult.as_dict())
 
             return jsonify(output), 200
+        else:
+            return "Not found", 404
 
 # voteResult actions
 
@@ -88,17 +101,25 @@ def getVoteResult(id):
         voteResult = VoteResult.query.get(id)
         if voteResult:
             return jsonify(voteResult.as_dict()), 200
+        else:
+            return "Not found", 404
 
 @app.route("/voteResult/<int:id>/region", methods=["GET"])
 def getRegionOfVoteResult(id):
     if id:
         voteResult = VoteResult.query.get(id)
-        if voteResult and voteResult.region:
-            return jsonify(voteResult.region.as_dict()), 200
+        if voteResult:
+            if voteResult.region:
+                return jsonify(voteResult.region.as_dict()), 200
+        else:
+            return "Not found", 404
 
 @app.route("/voteResult/<int:id>/category", methods=["GET"])
 def getCategoryOfVoteResult(id):
     if id:
         voteResult = VoteResult.query.get(id)
-        if voteResult and voteResult.category:
-            return jsonify(voteResult.category.as_dict()), 200
+        if voteResult:
+            if voteResult.category:
+                return jsonify(voteResult.category.as_dict()), 200
+        else:
+            return "Not found", 404
