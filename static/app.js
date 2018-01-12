@@ -1,8 +1,8 @@
 var bundesApp = angular.module('bundesApp', ['chart.js']);
 
 bundesApp.controller('mainCtrl', function mainCtrl($scope) {
-  //$scope.states = get_states();
   $scope.states = get_states();
+  $scope.states.pop(); // get rid of Bundesgebiet
   $scope.input = {
     filter: ""
   };
