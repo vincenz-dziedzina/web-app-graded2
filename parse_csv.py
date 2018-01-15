@@ -11,8 +11,6 @@ db.drop_all()
 db.create_all()
 
 def writeCategoriesToDB(row):
-    tempParties = []
-
     for i in range(3, len(row)-1, 4):
         category_name = row[i]
         if category_name:

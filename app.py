@@ -10,7 +10,7 @@ from settings import app, db
 # flask run
 
 @app.route("/", methods=["GET"])
-def login():
+def main():
     return render_template('index.html')
 
 # region actions
